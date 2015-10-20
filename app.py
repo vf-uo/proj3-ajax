@@ -13,7 +13,7 @@ from flask import jsonify # For AJAX transactions
 import json
 import logging
 
-# Date handling 
+# Date handling
 import arrow # Replacement for datetime, based on moment.js
 import datetime # But we still need time
 from dateutil import tz  # For interpreting local times
@@ -55,21 +55,22 @@ def page_not_found(error):
 
 ###############
 #
-# AJAX request handlers 
-#   These return JSON, rather than rendering pages. 
+# AJAX request handlers
+#   These return JSON, rather than rendering pages.
 #
 ###############
 @app.route("/_calc_times")
 def calc_times():
   """
-  Calculates open/close times from miles, using rules 
+  Calculates open/close times from miles, using rules
   described at http://www.rusa.org/octime_alg.html.
-  Expects one URL-encoded argument, the number of miles. 
+  Expects one URL-encoded argument, the number of miles.
   """
   app.logger.debug("Got a JSON request");
   miles = request.args.get('miles', 0, type=int)
+  #implement code here for regard of calculating bike times
   return jsonify(result=miles * 2)
- 
+
 #################
 #
 # Functions used within the templates
@@ -78,7 +79,7 @@ def calc_times():
 
 @app.template_filter( 'fmtdate' )
 def format_arrow_date( date ):
-    try: 
+    try:
         normal = arrow.get( date )
         return normal.format("ddd MM/DD/YYYY")
     except:
@@ -86,7 +87,7 @@ def format_arrow_date( date ):
 
 @app.template_filter( 'fmttime' )
 def format_arrow_time( time ):
-    try: 
+    try:
         normal = arrow.get( date )
         return normal.format("hh:mm")
     except:
@@ -104,4 +105,4 @@ if __name__ == "__main__":
     app.logger.setLevel(logging.DEBUG)
     app.run(port=CONFIG.PORT)
 
-    
+

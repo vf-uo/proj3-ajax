@@ -30,7 +30,38 @@
 <div class="container">
 
 <h1>ACP Brevet Closing times</h1>
-
+<!-- Design for specificatoins above grid --!>
+<form class="form-horizontal" role = "form">
+    <label class="col-md-2" for="date/time">Starting date and time: </label>
+        <input class="col-md-2" id="date" placeholder="YYYY/MM/DD">
+        <input class="col-md-2" id="time" placeholder="HH:MM">
+</form>
+<form class="form-horizontal" role="form">
+    <label class="col-md-2" for="distance">Race distance:</label>
+        <select class="control-label col-md-1" id="distance">
+            <option>200</option>
+            <option>300</option>
+            <option>400</option>
+            <option>600</option>
+            <option>1000</option>
+        </select>
+</form>
+<form class="form-horizontal" role="form">
+    <label class="col-md-2" for="units">Input distances are:</label>
+        <select class="control-label col-md-1" id="Iunits">
+            <option>mile</option>
+            <option>kilometers</option>
+        </select>
+</form>
+<form class="form-horizontal" role="form">
+    <label class="col-xs-2" for="units">Output distances are:</label>
+        <select class="control-label col-xs-1" id="0units">
+            <option>miles</option>
+            <option>kilometers</option>
+        </select>
+</div>    
+</form>
+<p></p>
   <!--
   -- If there are any warnings or other messages from a prior
   -- request to the server, 
@@ -50,49 +81,36 @@
 {% endwith %}
 
 <!-- Design on bootstrap grid -->
-<form role="form">
-<div class="row">
-  <div class="col-md-2">
-    <input type="text" class="form-control"
-     name="miles" value="Distance in miles"/>
-  </div>
-  <div class="col-md-4">
-    <input type="text" class="form-control"
-      name="location" value="location" />
-  </div>
-  <div class="col-md-4">
-    <span class="times form-control">(times)</span>
-  </div>
-</div>
+<!-- Design on bootstrap grid -->
+<form role="form" id="form-holder"></form>
 
-<div class="row">
-  <div class="col-md-2">
-    <input type="text" class="form-control"
-     name="miles" value="Distance in miles"/>
-  </div>
-  <div class="col-md-4">
-    <input type="text" class="form-control"
-      name="location" value="location" />
-  </div>
-  <div class="col-md-4">
-    <span class="times form-control">(times)</span>
-  </div>
-</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var template = 
+            '<div class="row">'+
+                '<div class="col-md-2">'+
+                    '<input type="text" class="form-control" name="miles" placeholder="Distance (miles)"/>'+
+                '</div>'+
+            '<div class="col-md-4">'+
+                '<input type="text" class="form-control" name="location" placeholder="Location" />'+
+            '</div>'+
+            '<div class="col-md-4">'+
+                '<span class="times form-control">(times)</span>'+
+            '</div>'+
+        '</div>';
+        var $par = $('#form-holder');
+        // A function so you can add more rows later, like say on a button press
+        function addRow() {
+            $par.append($(template));
+        }
+        // Start with 10 rows default
+        var num_rows = 10;
+        for (var i = 0; i < num_rows; i++) {
+            addRow();
+        }
+    });
+</script>
 
-<div class="row">
-  <div class="col-md-2">
-    <input type="text" class="form-control"
-     name="miles" value="Distance in miles"/>
-  </div>
-  <div class="col-md-4">
-    <input type="text" class="form-control"
-      name="location" value="location" />
-  </div>
-  <div class="col-md-4">
-    <span class="times form-control">(times)</span>
-  </div>
-</div>
-</form>
 
 <script type="text/javascript">
 
